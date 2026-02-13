@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Emanuele ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Playfair+Display:wght@600&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    overflow-x:hidden;
+    color:#fff;
+    text-align:center;
+    background:radial-gradient(circle at top,#7a0019,#3b000a,#140003);
+}
+
+/* Sparkle Layer */
+body::before{
+    content:"";
+    position:fixed;
+    width:100%;
+    height:100%;
+    background-image:radial-gradient(white 1px, transparent 1px);
+    background-size:3px 3px;
+    opacity:0.07;
+    animation:moveStars 60s linear infinite;
+}
+
+@keyframes moveStars{
+    from{background-position:0 0;}
+    to{background-position:1000px 1000px;}
+}
+
+.section{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.title{
+    font-family:'Cinzel',serif;
+    letter-spacing:3px;
+    opacity:0.8;
+}
+
+.name{
+    font-family:'Playfair Display',serif;
+    font-size:5rem;
+    margin:20px 0;
+    text-shadow:0 0 30px rgba(255,120,150,0.7);
+}
+
+.subtitle{
+    opacity:0.9;
+}
+
+.btn{
+    margin-top:40px;
+    padding:14px 35px;
+    border-radius:40px;
+    border:none;
+    background:linear-gradient(45deg,#ff4d6d,#ff758f);
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.btn:hover{
+    transform:scale(1.1);
+}
+
+.letter-box{
+    max-width:800px;
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(10px);
+    padding:40px;
+    border-radius:20px;
+    margin-top:40px;
+    line-height:1.8;
+    font-size:1.1rem;
+}
+
+.hidden{
+    display:none;
+}
+
+.yes{
+    font-family:'Playfair Display',serif;
+    font-size:4rem;
+    animation:fadeIn 2s forwards;
+}
+
+@keyframes fadeIn{
+    from{opacity:0;}
+    to{opacity:1;}
+}
+
+/* Floating Hearts */
+.heart{
+    position:fixed;
+    bottom:-10px;
+    animation:floatUp 8s linear infinite;
+    pointer-events: none; /* Prevent interaction */
+}
+
+@keyframes floatUp{
+    0%{transform:translateY(0);opacity:1;}
+    100%{transform:translateY(-100vh);opacity:0;}
+}
+
+/* YouTube player styles */
+#youtube-player {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+}
+
+#play-music-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    background: linear-gradient(45deg,#ff4d6d,#ff758f);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    display: none; /* Hidden by default */
+    z-index: 1000;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .name {
+        font-size: 3rem;
+    }
+    .yes {
+        font-size: 2.5rem;
+    }
+    .letter-box {
+        padding: 20px;
+        font-size: 1rem;
+    }
+    #play-music-btn {
+        top: 10px;
+        right: 10px;
+        padding: 8px 16px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Hidden YouTube iframe for background music -->
+<iframe id="youtube-player" src="https://www.youtube.com/embed/2Vv-BfVoq4g?enablejsapi=1&autoplay=1&loop=1&playlist=2Vv-BfVoq4g&mute=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+<!-- Fallback play button (shown if autoplay blocked) -->
+<button id="play-music-btn" onclick="manualPlay()">Play Music 🎶</button>
+
+<!-- HERO -->
+<div class="section">
+    <div class="title">A MESSAGE FOR MY VALENTINE</div>
+    <div class="name">Emanuele</div>
+    <div class="subtitle">I built this page with all my love — scroll down ❤️</div>
+    <button class="btn" onclick="startExperience()">Open My Heart</button>
+</div>
+
+<!-- LETTER -->
+<div class="section">
+    <div class="letter-box">
+        <h2>My Dearest Emanuele,</h2>
+        <br>
+        Some feelings are too deep for ordinary words.
+        But if I could try, I would say this —
+        <br><br>
+        You are the calm in my chaos,
+        the warmth in my quiet moments,
+        and the smile I never get tired of seeing.
+        <br><br>
+        Every laugh with you feels like magic.
+        Every day with you feels brighter.
+        <br><br>
+        So today, in the most special way I know…
+        <br><br>
+        <strong>Will you be my Valentine?</strong>
+    </div>
+
+    <button class="btn" onclick="showYes()">Yes 💖</button>
+</div>
+
+<!-- FINAL -->
+<div class="section hidden" id="final">
+    <div class="yes">SHE SAID YES! 🎉</div>
+    <p style="margin-top:20px;">You just made this the most beautiful Valentine's Day, Emanuele.</p>
+</div>
+
+<script>
+// Load YouTube IFrame API
+var tag = document.createElement('script');
+tag.src = "https://www.youtube.com/iframe_api";
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+var player;
+var autoplayBlocked = false;
+
+function onYouTubeIframeAPIReady() {
+    player = new YT.Player('youtube-player', {
+        events: {
+            'onReady': onPlayerReady,
+            'onError': onPlayerError,
+            'onStateChange': onPlayerStateChange
+        }
+    });
+}
+
+function onPlayerReady(event) {
+    // Attempt to play (muted) on load
+    event.target.playVideo();
+}
+
+function onPlayerError(event) {
+    console.error("YouTube player error:", event.data);
+    showFallbackPlayButton();
+}
+
+function onPlayerStateChange(event) {
+    if (event.data === YT.PlayerState.PAUSED && !autoplayBlocked) {
+        // Likely autoplay blocked
+        autoplayBlocked = true;
+        showFallbackPlayButton();
+    }
+}
+
+function showFallbackPlayButton() {
+    document.getElementById('play-music-btn').style.display = 'block';
+}
+
+function manualPlay() {
+    if (player) {
+        player.playVideo();
+        player.unMute();
+        document.getElementById('play-music-btn').style.display = 'none';
+    }
+}
+
+function startExperience(){
+    if (player) {
+        player.unMute(); // Unmute on button click
+        player.playVideo(); // Ensure playing
+    }
+    window.scrollBy({top: window.innerHeight, behavior: 'smooth'});
+}
+
+function showYes(){
+    document.getElementById("final").classList.remove("hidden");
+    document.getElementById("final").scrollIntoView({behavior:"smooth"});
+}
+
+// Floating Hearts Generator
+setInterval(()=>{
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "💖";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (Math.random() * 25 + 20) + "px";
+    document.body.appendChild(heart);
+    setTimeout(() => {
+        if (heart.parentNode) {
+            heart.parentNode.removeChild(heart);
+        }
+    }, 8000);
+}, 400);
+</script>
+
+</body>
+</html>
